@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyFirstAndroid</string>
+    <string name="text">Let`s go</string>
+    <string name="name">No game No life</string>
 </resources>
