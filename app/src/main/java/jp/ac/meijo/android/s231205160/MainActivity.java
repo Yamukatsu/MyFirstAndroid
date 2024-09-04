@@ -1,5 +1,6 @@
 package jp.ac.meijo.android.s231205160;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -66,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
                 binding.text.setText(editable.toString());
             }
         });
+
+        //Cancel
+        binding.button4.setOnClickListener(view -> {
+            setResult(RESULT_CANCELED);
+            finish();
+        });
+
+        //ok
+        binding.button5.setOnClickListener(view -> {
+            var intent = new Intent();
+            intent.putExtra("ret", binding.editTextText.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
+        });
     }
 
     @Override
@@ -73,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         prefDataStore.getString("name")
                 .ifPresent(name -> binding.text.setText(name));
+        String text2 = getIntent().getStringExtra("text");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        binding.text.setText(text2);
+        binding.editTextText.setText(text2);
     }
 
     @Override
